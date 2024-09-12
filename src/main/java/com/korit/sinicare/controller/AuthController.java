@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.korit.sinicare.dto.request.auth.IdCheckRequestDto;
+import com.korit.sinicare.dto.request.auth.SignUpRequestDto;
+import com.korit.sinicare.dto.request.auth.SigninRequestDto;
 import com.korit.sinicare.dto.request.auth.TelAuthCheckRequestDto;
 import com.korit.sinicare.dto.request.auth.TelAuthRequestDto;
 import com.korit.sinicare.dto.response.ResponseDto;
+import com.korit.sinicare.dto.response.auth.SignInResponseDto;
 import com.korit.sinicare.service.implement.AuthService;
 
 import jakarta.validation.Valid;
@@ -43,6 +46,22 @@ public class AuthController {
         @RequestBody @Valid TelAuthCheckRequestDto requestBody
     ) {
         ResponseEntity<ResponseDto> response = authService.telAuthCheck(requestBody);
+        return response;
+    }
+
+    @PostMapping("/sign-up")
+    public ResponseEntity<ResponseDto> Signup(
+        @RequestBody @Valid SignUpRequestDto requestBody
+    ) {
+        ResponseEntity<ResponseDto> response = authService.SignUp(requestBody);
+        return response;
+    }
+
+    @PostMapping("/sign-in")
+    public ResponseEntity<? super SignInResponseDto> signIn(
+        @RequestBody @Valid SigninRequestDto requestBody
+    ) {
+        ResponseEntity<? super SignInResponseDto> response = authService.signIn(requestBody);
         return response;
     }
 }

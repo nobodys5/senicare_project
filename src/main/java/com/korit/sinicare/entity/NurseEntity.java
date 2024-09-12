@@ -1,5 +1,7 @@
 package com.korit.sinicare.entity;
 
+import com.korit.sinicare.dto.request.auth.SignUpRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -24,4 +26,12 @@ public class NurseEntity {
     private String joinPath;
     private String snsId;
     
+    public NurseEntity(SignUpRequestDto dto) {
+        this.userId = dto.getUserId();
+        this.password = dto.getPassword();
+        this.name = dto.getName();
+        this.telNumber = dto.getTelNumber();
+        this.joinPath = dto.getJoinPath();
+        this.snsId = dto.getSnsId();
+    }
 }
