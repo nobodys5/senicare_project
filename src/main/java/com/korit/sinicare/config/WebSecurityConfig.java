@@ -27,6 +27,7 @@ public class WebSecurityConfig {
     
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    // 필터체인 사용하기위해 bean어노테이션 사용하여 등록
     @Bean
     protected SecurityFilterChain configure(HttpSecurity security) throws Exception {
 

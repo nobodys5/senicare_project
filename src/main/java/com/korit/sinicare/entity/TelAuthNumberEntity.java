@@ -18,6 +18,6 @@ public class TelAuthNumberEntity {
     
     @Id
     private String telNumber;
-    private String telAuthNumber;
+    private String authNumber;
     
 }

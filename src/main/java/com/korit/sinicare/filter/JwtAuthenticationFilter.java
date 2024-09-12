@@ -37,6 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     
                     // Request 객체에서 Bearer 토큰 추출
+                    // 아래의 필터체인에서 토큰이 null 이면 다음 필터체인을 실행시키기 위해 return문으로 벗어난다.
                     String token = parseBearerToken(request);
                     if (token == null) {
                         filterChain.doFilter(request, response);

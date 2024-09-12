@@ -8,5 +8,7 @@ import com.korit.sinicare.entity.NurseEntity;
 @Repository
 public interface NurseRepository extends JpaRepository<NurseEntity, String> {
     
+    boolean existsByUserId(String userId);
+    boolean existsByTelNumber(String telNumber);
 
 }

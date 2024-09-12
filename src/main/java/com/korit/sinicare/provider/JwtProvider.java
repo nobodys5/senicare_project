@@ -16,6 +16,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
+// 강사님께 생성메서드와 검증 메서드의 차이에 대해서 물어보기
+
 // class: JWT 생성 및 검증 기능 제공자
 // - JWT 암호화 알고리즘 HS256
 // - 비밀키 환경변수에 있는 jwt.secret
