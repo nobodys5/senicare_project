@@ -13,7 +13,7 @@ import com.korit.sinicare.dto.request.auth.TelAuthCheckRequestDto;
 import com.korit.sinicare.dto.request.auth.TelAuthRequestDto;
 import com.korit.sinicare.dto.response.ResponseDto;
 import com.korit.sinicare.dto.response.auth.SignInResponseDto;
-import com.korit.sinicare.service.implement.AuthService;
+import com.korit.sinicare.service.AuthService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

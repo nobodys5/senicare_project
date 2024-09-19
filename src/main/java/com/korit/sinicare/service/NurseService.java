@@ -1,4 +1,4 @@
-package com.korit.sinicare.service.implement;
+package com.korit.sinicare.service;
 
 import org.springframework.http.ResponseEntity;
 

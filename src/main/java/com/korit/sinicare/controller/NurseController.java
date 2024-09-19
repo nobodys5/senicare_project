@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.korit.sinicare.dto.response.nurse.GetSigninResponseDto;
-import com.korit.sinicare.service.implement.NurseService;
+import com.korit.sinicare.service.NurseService;
 
 import lombok.RequiredArgsConstructor;
 

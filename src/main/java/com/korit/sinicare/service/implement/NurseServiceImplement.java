@@ -7,6 +7,7 @@ import com.korit.sinicare.dto.response.ResponseDto;
 import com.korit.sinicare.dto.response.nurse.GetSigninResponseDto;
 import com.korit.sinicare.entity.NurseEntity;
 import com.korit.sinicare.repository.NurseRepository;
+import com.korit.sinicare.service.NurseService;
 
 import lombok.RequiredArgsConstructor;
 

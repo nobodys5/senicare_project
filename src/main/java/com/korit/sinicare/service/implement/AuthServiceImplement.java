@@ -20,6 +20,7 @@ import com.korit.sinicare.provider.JwtProvider;
 import com.korit.sinicare.provider.SmsProvider;
 import com.korit.sinicare.repository.NurseRepository;
 import com.korit.sinicare.repository.TelAuthNumberRepository;
+import com.korit.sinicare.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 
