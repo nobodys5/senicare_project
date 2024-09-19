@@ -13,6 +13,7 @@ public class CustomOAuth2User implements OAuth2User {
     private String name;
     private Map<String, Object> attributes;
     private Collection<? extends GrantedAuthority> authorities;
+    // boolean 으로 userid가 존재하는지 아닌지 확인하기 위해 메서드 추가
     private boolean existed;
 
     public CustomOAuth2User(String name, Map<String, Object> attributes, boolean existed) {

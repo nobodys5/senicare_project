@@ -40,7 +40,7 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
 
         String snsId = getSnsId(oAuth2User, registration);
 
-        NurseEntity nurseEntity = nurseRepository.findBySnsIdAndJoinPath(snsId, snsId);
+        NurseEntity nurseEntity = nurseRepository.findBySnsIdAndJoinPath(snsId, registration);
 
         CustomOAuth2User customOAuth2User = null;
 

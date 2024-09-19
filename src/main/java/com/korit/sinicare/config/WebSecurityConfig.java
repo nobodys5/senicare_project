@@ -1,5 +1,7 @@
 package com.korit.sinicare.config;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,17 +10,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.korit.sinicare.dto.response.ResponseCode;
+import com.korit.sinicare.dto.response.ResponseMessage;
 import com.korit.sinicare.filter.JwtAuthenticationFilter;
 import com.korit.sinicare.handler.OAuth2SuccessHandler;
 import com.korit.sinicare.service.implement.OAuth2UserServiceImplement;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 // Spring Web 보안 설정
@@ -53,6 +62,11 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/v1/auth/**","oauth2/callback/*", "/").permitAll()
                 .anyRequest().authenticated()
             )
+            // 인증 및 인가 작업중 발생하는 예외 처리
+            .exceptionHandling(exception -> exception
+                .authenticationEntryPoint(new AuthenticationFailEntryPoint())
+            )
+
             // oAuth2 로그인 적용
             .oauth2Login(oauth2 -> oauth2
                 .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
@@ -76,11 +90,26 @@ public class WebSecurityConfig {
         configuration.addAllowedMethod("*"); // 위의 header와 마찬가지로 요청보낼 메서드 get,post등을 어떤 경우든 허용하겠다는 뜻
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        // /**로 설정하면 예시 /auuth/* 등의 모든경로를 받을수 있음 */ */
+        // /**로 설정하면 예시 /auth/* 등의 모든경로를 받을수 있음 */ */
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
 
     }
+
+}
+
+class AuthenticationFailEntryPoint implements AuthenticationEntryPoint{
+
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+            AuthenticationException authException) throws IOException, ServletException {
+
+        authException.printStackTrace();
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getWriter().write("{ \"code\": \"" + ResponseCode.AUTHENTICATION_FAIL + "\", \"message\": \"" + ResponseMessage.AUTHENTICATION_FAIL + "\" }");
+    };
+
 
 }
