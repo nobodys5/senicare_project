@@ -1,5 +1,6 @@
 package com.korit.sinicare.entity;
 
+import com.korit.sinicare.dto.request.tool.PatchToolRequestDto;
 import com.korit.sinicare.dto.request.tool.PostToolRequestDto;
 
 import jakarta.persistence.Entity;
@@ -31,5 +32,13 @@ public class ToolEntity {
         this.name = dto.getName();
         this.purpose = dto.getPurpose();
         this.count = dto.getCount();
+        
     }
+
+    public void patch(PatchToolRequestDto dto) {
+        this.name = dto.getName();
+        this.purpose = dto.getPurpose();
+        this.count = dto.getCount();
+    }
+
 }
