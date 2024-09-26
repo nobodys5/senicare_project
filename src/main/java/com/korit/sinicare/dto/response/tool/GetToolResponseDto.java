@@ -8,6 +8,9 @@ import com.korit.sinicare.dto.response.ResponseDto;
 import com.korit.sinicare.dto.response.ResponseMessage;
 import com.korit.sinicare.entity.ToolEntity;
 
+import lombok.Getter;
+
+@Getter
 public class GetToolResponseDto extends ResponseDto{
     
     private Integer toolNumber;
