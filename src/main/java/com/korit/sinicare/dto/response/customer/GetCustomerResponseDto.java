@@ -20,6 +20,7 @@ public class GetCustomerResponseDto extends ResponseDto {
     private String chargerName;
     private String chargerId;
     private String address;
+    private String location;
 
     // 
     private GetCustomerResponseDto (GetCustomerResultSet resultSet) {
@@ -32,9 +33,10 @@ public class GetCustomerResponseDto extends ResponseDto {
         this.chargerName = resultSet.getChargerName();
         this.chargerId = resultSet.getChargerId();
         this.address = resultSet.getAddress();
+        this.location = resultSet.getLocation();
     }
 
-    
+    // static을 사용하여 응답 성공을 위한 success 메소드
     public static ResponseEntity<GetCustomerResponseDto> success(GetCustomerResultSet resultSet) {
         GetCustomerResponseDto responseBody = new GetCustomerResponseDto(resultSet);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);

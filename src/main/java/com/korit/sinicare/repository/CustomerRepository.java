@@ -14,6 +14,7 @@ import com.korit.sinicare.repository.resultSet.GetCustomersResultSet;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer> {
     CustomerEntity findByCustomerNumber(Integer customerNumber);
+    List<CustomerEntity> findByCharger(String charger);
 
     @Query(
     value=
@@ -40,7 +41,8 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
         "    C.birth as birth, " +
         "    N.name as chargerName, " +
         "    N.user_id as chargerId, " +
-        "    C.address as address " +
+        "    C.address as address, " +
+        "    C.location as location " +
         "FROM customers C LEFT JOIN nurses N " +
         "ON C.charger = N.user_id " +
         "WHERE C.customer_number = :customerNumber ",
