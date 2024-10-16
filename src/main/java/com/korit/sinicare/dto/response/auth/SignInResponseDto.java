@@ -17,6 +17,8 @@ public class SignInResponseDto extends ResponseDto {
 
     private SignInResponseDto(String accessToken) {
 
+        // 부모 클래스를 상속받을때(extends) 빈생성자가 없으면 첫번째줄에
+        // 부모클래스를 호출해줘야한다.
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         this.accessToken = accessToken;
         this.expiration = 10 * 60 * 60; // 10시간 60 분 60초

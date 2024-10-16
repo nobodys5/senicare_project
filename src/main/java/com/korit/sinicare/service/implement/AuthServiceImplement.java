@@ -119,9 +119,12 @@ public class AuthServiceImplement implements AuthService {
 
         try {
             
+            // 데이터베이스에 userid 존재하는지 확인
             boolean isExistedId = nurseRepository.existsById(userId);
+            // userid 존재하면 responsedto에 중복메세지오류를 띄우는 코드
             if (isExistedId) return ResponseDto.duplicatedUserId();
-
+            
+            // 데이터베이스에 telnumber 존재하는지 확인
             boolean isExistedTelNumber = nurseRepository.existsByTelNumber(telNumber);
             if (isExistedTelNumber) return ResponseDto.duplicatedTelNumber();
 
